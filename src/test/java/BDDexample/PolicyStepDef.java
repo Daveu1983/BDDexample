@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class PolicyStepDef {
     private String firstName;
     private String lastName;
+    private int policyNumber;
     PolicyDetails myPolicy = new PolicyDetails();
 
     @When("^Give me name$")
@@ -37,5 +38,16 @@ public class PolicyStepDef {
     public void iGetMyFullName(){
         assertEquals ("Brian", firstName);
         assertEquals ("May", lastName);
+    }
+
+    @When("^I ask for my policy number$")
+    public void iAskForMyPolicyNumber() {
+        policyNumber = myPolicy.getPolicyNumber();
+
+    }
+
+    @Then("^I get my policy number$")
+    public void iGetMyPolicyNumber() {
+        assertEquals(123456, policyNumber);
     }
 }
