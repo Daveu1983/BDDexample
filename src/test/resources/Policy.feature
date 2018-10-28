@@ -9,3 +9,7 @@ Feature: I want my policy details
     When I ask for my name
     Then I get my full name
 
+  Scenario: I want to view my policy number
+    Given policy details
+    When I ask for my policy number
+    Then I get my policy number
