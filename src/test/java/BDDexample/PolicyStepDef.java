@@ -1,5 +1,7 @@
 package BDDexample;
 
+import cucumber.api.PendingException;
+import cucumber.api.java.en.But;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -11,6 +13,8 @@ public class PolicyStepDef {
     private String lastName;
     private int policyNumber;
     PolicyDetails myPolicy = new PolicyDetails();
+    private int age;
+    private String emailAddress;
 
     @When("^Give me name$")
     public void Give_me_name(){
@@ -49,5 +53,47 @@ public class PolicyStepDef {
     @Then("^I get my policy number$")
     public void iGetMyPolicyNumber() {
         assertEquals(123456, policyNumber);
+    }
+
+    @When("^I ask for my age$")
+    public void iAskForMyAge() {
+        age = myPolicy.getAge();
+    }
+
+    @Then("^I get my age$")
+    public void iGetMyAge() {
+        assertEquals(20, age);
+    }
+
+    @When("^I ask for my email address$")
+    public void iAskForMyEmailAddress(){
+        emailAddress = myPolicy.getEmailAddress();
+    }
+
+    @Then("^I get my email address$")
+    public void iGetMyEmailAddress() {
+        assertEquals("blah@blah.com", emailAddress);
+    }
+
+    @When("^I ask for all my policy details$")
+    public void iAskForAllMyPolicyDetails() {
+        firstName = myPolicy.getFirstName();
+        lastName = myPolicy.getLastName();
+        policyNumber = myPolicy.getPolicyNumber();
+        age = myPolicy.getAge();
+        emailAddress = myPolicy.getEmailAddress();
+    }
+
+    @When("^I ask for my personal details$")
+    public void iAskForMyPersonalDetails() {
+        firstName = myPolicy.getFirstName();
+        lastName = myPolicy.getLastName();
+        age = myPolicy.getAge();
+        emailAddress = myPolicy.getEmailAddress();
+    }
+
+    @But("^I don't get my policy number$")
+    public void iDonTGetMyPolicyNumber() {
+        assertEquals(0, policyNumber);
     }
 }
