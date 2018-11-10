@@ -13,3 +13,30 @@ Feature: I want my policy details
     Given policy details
     When I ask for my policy number
     Then I get my policy number
+
+  Scenario: I want to view my age
+    Given policy details
+    When I ask for my age
+    Then I get my age
+
+  Scenario: I want to view my email address
+    Given policy details
+    When I ask for my email address
+    Then I get my email address
+
+  Scenario: I want to view all my policy details
+    Given policy details
+    When I ask for all my policy details
+    Then I get my full name
+    And I get my age
+    And I get my policy number
+    And I get my email address
+
+  Scenario: I want to view all my personal details
+    Given policy details
+    When I ask for my personal details
+    Then I get my full name
+    And I get my age
+    And I get my email address
+    But I don't get my policy number
+
